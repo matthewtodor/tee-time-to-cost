@@ -51,20 +51,41 @@ const teeTimeCost = (cost, firstTime, lastTime, teeTimeDuration) => {
 		const newTeeTimeDuration = parseInt(teeTimeDuration) + num;
 		const numberofGroups = Math.floor(totalMinutesofPlay / newTeeTimeDuration);
 		const newCost = baseMoneyEarned / numberofGroups / 4;
-		return { newTeeTimeDuration: newTeeTimeDuration, numberofGroups: numberofGroups, newCost: newCost.toFixed(2) };
+		return { "New Time Between Groups": newTeeTimeDuration, "Number of Groups per Day": numberofGroups, "Cost Per Golfer": `$${newCost.toFixed(2)}` };
 	};
-	console.table(arr.map((num) => changeTeeTimeDuration(num)));
-	console.log(`${baseNumberOfGroups} groups of golfers in a day`);
-	console.log(`The course earns $${baseMoneyEarned} per day currently`);
+
+	return arr.map((num) => changeTeeTimeDuration(num));
 };
 
 function App() {
-	teeTimeCost(45, "06:10 AM", "7:00 PM", "10");
+	console.log(teeTimeCost(45, "06:10 AM", "7:00 PM", "10"));
 	return (
 		<div className="App">
 			<header className="App-header">
 				<h1>Tee Time to Cost</h1>
 			</header>
+			<main>
+				<table>
+					<thead>
+						<tr>
+							<th>Time Between Groups</th>
+							<th>Number of Groups per Day</th>
+							<th>Cost per Golfer</th>
+						</tr>
+					</thead>
+					<tbody>
+						{teeTimeCost(45, "06:10 AM", "7:00 PM", "10").map((row) => {
+							return (
+								<tr key={row["New Time Between Groups"]}>
+									<td>{row["New Time Between Groups"]}</td>
+									<td>{row["Number of Groups per Day"]}</td>
+									<td>{row["Cost Per Golfer"]}</td>
+								</tr>
+							);
+						})}
+					</tbody>
+				</table>
+			</main>
 		</div>
 	);
 }
