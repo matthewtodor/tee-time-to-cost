@@ -42,11 +42,24 @@ const teeTimeCost = (cost, firstTime, lastTime, teeTimeDuration) => {
 		return hrToMn;
 	};
 	const totalMinutesofPlay = sanitizedLastTime() - sanitizedFirstTime();
-	console.log(Math.floor(totalMinutesofPlay / parseInt(teeTimeDuration)));
+	const baseNumberOfGroups = Math.floor(totalMinutesofPlay / parseInt(teeTimeDuration));
+	const moneyPerGroup = cost * 4;
+	const baseMoneyEarned = baseNumberOfGroups * moneyPerGroup;
+
+	const arr = [-4, -3, -2, -1, 0, 1, 2, 3, 4];
+	const changeTeeTimeDuration = (num) => {
+		const newTeeTimeDuration = parseInt(teeTimeDuration) + num;
+		const numberofGroups = Math.floor(totalMinutesofPlay / newTeeTimeDuration);
+		const newCost = baseMoneyEarned / numberofGroups / 4;
+		return { newTeeTimeDuration: newTeeTimeDuration, numberofGroups: numberofGroups, newCost: newCost.toFixed(2) };
+	};
+	console.table(arr.map((num) => changeTeeTimeDuration(num)));
+	console.log(`${baseNumberOfGroups} groups of golfers in a day`);
+	console.log(`The course earns $${baseMoneyEarned} per day currently`);
 };
 
 function App() {
-	teeTimeCost(1, "12:30 AM", "8:00 PM", "12");
+	teeTimeCost(45, "06:10 AM", "7:00 PM", "10");
 	return (
 		<div className="App">
 			<header className="App-header">
