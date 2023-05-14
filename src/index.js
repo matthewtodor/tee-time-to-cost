@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import { themeOptions } from "./theme/theme";
 import teeTimeCost from "./helpers/teeTimeCost";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import Header from "./components/header/header";
+import { Header } from "./components";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
