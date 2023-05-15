@@ -8,6 +8,7 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import Header from "./components/header/Header";
+import InputForm from "./components/inputForm/InputForm";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -16,7 +17,9 @@ root.render(
 			<Header />
 			{/* Body component */}
 			<main>
+				<InputForm />
 				{/* Results component */}
+
 				<table>
 					<thead>
 						<tr>
